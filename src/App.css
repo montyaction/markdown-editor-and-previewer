@@ -81,7 +81,7 @@ body {
   max-width: 800px;
   min-height: 200px;
   margin: 1.25rem auto;
-  overflow: break-word;
+  overflow-wrap: break-word;
 }
 
 @media screen and (max-width: 850px) {
