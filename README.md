@@ -24,5 +24,3 @@ The main `App` component holds the state for the Markdown content and renders bo
 2. Navigate to the project directory: `cd your-repository`
 3. Install dependencies: `npm install`
 4. Start the application: `npm start`
-
-Feel free to modify and enhance the application according to your needs.
