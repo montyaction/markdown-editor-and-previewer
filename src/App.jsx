@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { marked } from 'marked';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-json';
+import 'prismjs/themes/prism.css';
 
 const MarkdownEditor = ({ onEditorChange, isMaximized, toggleMaximized, isHidden }) => {
   return (
@@ -12,10 +15,17 @@ const MarkdownEditor = ({ onEditorChange, isMaximized, toggleMaximized, isHidden
 };
 
 const MarkdownPreviewer = ({ markdown, isMaximized, toggleMaximized, isHidden }) => {
+  const html = marked(markdown);
+
+  useEffect(() => {
+    // Force PrismJS to highlight the code
+    Prism.highlightAll();
+  }, [html]);
+
   return (
     <div className={`previewer-wrapper ${isMaximized ? 'maximized' : ''} ${isHidden ? 'hide' : ''}`}>
       <ToolBar title={'Previewer'} isMaximized={isMaximized} toggleMaximized={toggleMaximized} />
-      <div id='preview' dangerouslySetInnerHTML={{ __html: marked(markdown) }}></div>
+      <div id='preview' dangerouslySetInnerHTML={{ __html: html }}></div>
     </div>
   );
 };
