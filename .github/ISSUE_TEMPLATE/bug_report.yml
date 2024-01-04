@@ -1,0 +1,61 @@
+name: Bug Report
+description: File a bug report
+title: '[Bug]: '
+labels: ['bug']
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - closed
+      - reopened
+
+jobs:
+  bug-report:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Create Bug Report
+      run: |
+        echo "## Bug Report" > ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "### Description" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "Provide a clear and concise description of the bug you are experiencing." >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "### Steps to Reproduce" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "### Expected Behavior" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "A clear and concise description of what you expected to happen." >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "### Screenshots" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "If applicable, add screenshots to help explain your problem." >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "### Environment" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "- OS: [e.g., Windows 10]" >> ISSUE_TEMPLATE.md
+        echo "- Browser: [e.g., Chrome, Firefox]" >> ISSUE_TEMPLATE.md
+        echo "- Version: [e.g., 22]" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "### Additional Information" >> ISSUE_TEMPLATE.md
+        echo "" >> ISSUE_TEMPLATE.md
+        echo "Add any other context about the problem here." >> ISSUE_TEMPLATE.md
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add ISSUE_TEMPLATE.md
+        git commit -m "Add Bug Report template"
+        git push
